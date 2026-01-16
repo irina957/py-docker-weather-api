@@ -10,14 +10,13 @@ if API_KEY is None:
     print("API_KEY not provided")
     sys.exit(1)
 CITY = "Paris"
+WEATHER_API_URL = "http://api.weatherapi.com/v1/current.json"
 
 
 def get_weather() -> None:
     payload = {"key": API_KEY, "q": CITY}
     try:
-        res = requests.get(
-            url="http://api.weatherapi.com/v1/current.json", params=payload
-        )
+        res = requests.get(WEATHER_API_URL, params=payload)
         res.raise_for_status()
         data = res.json()
         print(
